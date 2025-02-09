@@ -1,7 +1,7 @@
 export default function pages() {
   return (
-    <div className="flex flex-col justify-center items-center h-screen bg-gray-100">
-      <div className="text-4xl text-gray-900 font-bold mb-4">
+    <div className="flex flex-col justify-center text-center items-center bg-black h-screen">
+      <div className="text-4xl font-bold mb-4 mx-4">
         Welcome to Noodle&apos;s Den&apos;s Landing Page
       </div>
       <div className="text-xl text-gray-600">
