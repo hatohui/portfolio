@@ -21,7 +21,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${raleway.variable} antialiased select-none`}>
+      <body
+        className={`${raleway.variable} flex flex-col antialiased overflow-auto select-none`}
+      >
         <NavBar />
         <div className="bg-black">{children}</div>
       </body>
