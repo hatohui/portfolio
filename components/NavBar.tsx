@@ -21,9 +21,9 @@ const NavBar = () => {
   const controlNavbar = () => {
     const scrollY = window.scrollY;
     if (scrollY > lastScrollY.current && show) {
-      setShow(false); // Hide navbar only if it's currently visible
+      setShow(false);
     } else if (scrollY < lastScrollY.current && !show) {
-      setShow(true); // Show navbar only if it's currently hidden
+      setShow(true);
     }
     lastScrollY.current = scrollY;
   };
@@ -35,8 +35,8 @@ const NavBar = () => {
 
   return (
     <nav
-      className={`fixed top-0 right-0 w-full h-[57px] p-4 shadow-lg bg-rose-500/50 
-      bg-gradient-to-t from-black to-transparent backdrop-blur-sm transition-transform duration-300 ${
+      className={`fixed top-0 right-0 w-full h-[57px] p-4 shadow-lg 
+      bg-gradient-to-t from-transparent via-transparent to-rose-500/100 backdrop-blur-sm transition-transform duration-300 ${
         show ? "translate-y-0" : "-translate-y-full"
       }`}
     >
