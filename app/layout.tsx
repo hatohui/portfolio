@@ -27,7 +27,7 @@ export default function RootLayout({
       >
         <ClientMetaballsCanvas />
         <NavBar />
-        <div className="">{children}</div>
+        <main>{children}</main>
       </body>
     </html>
   );

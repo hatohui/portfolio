@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef, useEffect, useState } from "react";
+import React, { useRef, useEffect, useState, forwardRef } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 import { fragmentShader, vertexShader } from "./shaders";
@@ -165,23 +165,10 @@ const Metaballs = () => {
   );
 };
 
-export default function MetaballsCanvas() {
-  const canvasRef = useRef<HTMLCanvasElement | null>(null);
-  const [renderer, setRenderer] = useState<THREE.WebGLRenderer | null>(null);
-
-  useEffect(() => {
-    if (!canvasRef.current || renderer) return;
-
-    const newRenderer = new THREE.WebGLRenderer({ canvas: canvasRef.current });
-    setRenderer(newRenderer);
-
-    return () => {
-      newRenderer.dispose(); // Cleanup on unmount
-    };
-  }, []);
-
+const MetaballCanvas = forwardRef<HTMLCanvasElement>((_, ref) => {
   return (
     <Canvas
+      ref={ref}
       gl={{ preserveDrawingBuffer: true }}
       frameloop="always"
       dpr={[1, 2]}
@@ -197,4 +184,7 @@ export default function MetaballsCanvas() {
       <Metaballs />
     </Canvas>
   );
-}
+});
+
+MetaballCanvas.displayName = "MetaballCanvas"; // Fix React warning for display name
+export default MetaballCanvas;

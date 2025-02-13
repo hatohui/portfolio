@@ -1,21 +1,23 @@
 "use client";
 
+import { useEffect, useRef } from "react";
+import { useMetaballsStore } from "@/store/useMetaballsStore";
 import dynamic from "next/dynamic";
-import { useEffect, useState } from "react";
 
-// Dynamically import the MetaballsCanvas component with SSR disabled
+// Dynamically import with SSR disabled and use forwardRef
 const DynamicMetaballsCanvas = dynamic(() => import("./MetaballCanvas"), {
   ssr: false,
 });
 
 export default function ClientMetaballsCanvas() {
-  const [mounted, setMounted] = useState(false);
+  const { isInitialized, setInitialized } = useMetaballsStore();
+  const canvasRef = useRef<HTMLCanvasElement | null>(null);
 
   useEffect(() => {
-    setMounted(true);
-  }, []);
+    if (!isInitialized) {
+      setInitialized(true);
+    }
+  }, [isInitialized, setInitialized]);
 
-  if (!mounted) return null; // Prevent flicker on SSR hydration
-
-  return <DynamicMetaballsCanvas />;
+  return <DynamicMetaballsCanvas ref={canvasRef} />; // ✅ Now ref is correctly assigned
 }
