@@ -13,6 +13,32 @@ const Metaballs = () => {
     new THREE.Vector2(window.innerWidth, window.innerHeight)
   );
 
+  useEffect(() => {
+    const canvas = document.querySelector("canvas");
+    if (!canvas) return;
+
+    const handleContextLost = (event: Event) => {
+      event.preventDefault();
+      console.warn("WebGL context lost, attempting to restore...");
+    };
+
+    const handleContextRestored = () => {
+      console.log("WebGL context restored.");
+    };
+
+    canvas.addEventListener("webglcontextlost", handleContextLost, false);
+    canvas.addEventListener(
+      "webglcontextrestored",
+      handleContextRestored,
+      false
+    );
+
+    return () => {
+      canvas.removeEventListener("webglcontextlost", handleContextLost);
+      canvas.removeEventListener("webglcontextrestored", handleContextRestored);
+    };
+  }, []);
+
   // **Blobs with controlled speed, less curvy motion**
   const blobs = useRef(
     Array.from({ length: NUM_BLOBS }, () => {
@@ -60,7 +86,7 @@ const Metaballs = () => {
   }, [resolution]);
 
   useFrame((state) => {
-    console.log("Animation frame running"); // Add this line
+    state.invalidate(); // Force render even when paused
 
     if (shaderRef.current) {
       shaderRef.current.uniforms.u_time.value = state.clock.getElapsedTime();
@@ -181,6 +207,8 @@ const Metaballs = () => {
 const MetaballsCanvas = () => {
   return (
     <Canvas
+      frameloop="always"
+      dpr={[1, 2]}
       style={{
         position: "fixed",
         top: 0,
