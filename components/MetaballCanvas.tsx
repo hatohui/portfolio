@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 import { fragmentShader, vertexShader } from "./shaders";
@@ -165,7 +165,21 @@ const Metaballs = () => {
   );
 };
 
-const MetaballsCanvas = () => {
+export default function MetaballsCanvas() {
+  const canvasRef = useRef<HTMLCanvasElement | null>(null);
+  const [renderer, setRenderer] = useState<THREE.WebGLRenderer | null>(null);
+
+  useEffect(() => {
+    if (!canvasRef.current || renderer) return;
+
+    const newRenderer = new THREE.WebGLRenderer({ canvas: canvasRef.current });
+    setRenderer(newRenderer);
+
+    return () => {
+      newRenderer.dispose(); // Cleanup on unmount
+    };
+  }, []);
+
   return (
     <Canvas
       gl={{ preserveDrawingBuffer: true }}
@@ -183,6 +197,4 @@ const MetaballsCanvas = () => {
       <Metaballs />
     </Canvas>
   );
-};
-
-export default MetaballsCanvas;
+}
