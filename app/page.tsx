@@ -7,7 +7,7 @@ export default function pages() {
       <div className="text-4xl font-bold mb-4 mx-4">
         Welcome to Noodle&apos;s Den&apos;s Landing Page
       </div>
-      <div className="text-xl text-gray-600">
+      <div className="text-xl text-slate-100">
         This website is still a work in progress
       </div>
     </div>
