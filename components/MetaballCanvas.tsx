@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef, useEffect, useState, forwardRef } from "react";
+import React, { useRef, useEffect, forwardRef } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 import { fragmentShader, vertexShader } from "./shaders";
