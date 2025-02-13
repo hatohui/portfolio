@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { Raleway } from "next/font/google";
-import NavBar from "@/components/NavBar";
-import ClientMetaballsCanvas from "@/components/ClientMetaBalls";
+import Layout from "@/components/Layout";
 
 const raleway = Raleway({
   variable: "--font-raleway",
@@ -17,17 +16,13 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+}: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en">
       <body
         className={`${raleway.variable} flex flex-col antialiased overflow-auto select-none`}
       >
-        <ClientMetaballsCanvas />
-        <NavBar />
-        <main>{children}</main>
+        <Layout>{children}</Layout> {/* ✅ Now Metaballs won't unmount */}
       </body>
     </html>
   );
