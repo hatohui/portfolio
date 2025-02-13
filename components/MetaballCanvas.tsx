@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef, useEffect, forwardRef } from "react";
+import React, { useRef, useEffect } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 import { fragmentShader, vertexShader } from "./shaders";
@@ -12,6 +12,8 @@ const Metaballs = () => {
   const resolutionRef = useRef(
     new THREE.Vector2(window.innerWidth, window.innerHeight)
   );
+
+  // Create an array of blob objects with position, velocity, drift, and radius.
   const blobs = useRef(
     Array.from({ length: NUM_BLOBS }, () => {
       const aspect = window.innerWidth / window.innerHeight;
@@ -30,9 +32,9 @@ const Metaballs = () => {
     })
   );
 
+  // Listen for window resize and update resolution and blob positions.
   useEffect(() => {
     let resizeTimeout: NodeJS.Timeout;
-
     const handleResize = () => {
       clearTimeout(resizeTimeout);
       resizeTimeout = setTimeout(() => {
@@ -40,23 +42,22 @@ const Metaballs = () => {
           window.innerWidth,
           window.innerHeight
         );
+        // Copy new resolution into our ref.
         resolutionRef.current.copy(newResolution);
-
         if (shaderRef.current) {
           shaderRef.current.uniforms.u_resolution.value.set(
             newResolution.x,
             newResolution.y
           );
-          shaderRef.current.uniformsNeedUpdate = true; // 🔥 Ensure WebGL updates uniforms
+          shaderRef.current.uniformsNeedUpdate = true;
         }
-
+        // Update blob positions proportionally.
         const newAspect = newResolution.x / newResolution.y;
         const oldAspect = resolutionRef.current.x / resolutionRef.current.y;
-
         blobs.current.forEach((blob) => {
           blob.position.x *= newAspect / oldAspect;
         });
-      }, 50); // Delay updates to avoid blocking animation
+      }, 50);
     };
 
     window.addEventListener("resize", handleResize);
@@ -67,8 +68,7 @@ const Metaballs = () => {
   }, []);
 
   useFrame((state) => {
-    state.invalidate(); // 🔥 Ensure continuous rendering
-
+    state.invalidate(); // Force continuous rendering.
     if (shaderRef.current) {
       shaderRef.current.uniforms.u_time.value = state.clock.getElapsedTime();
 
@@ -92,24 +92,22 @@ const Metaballs = () => {
           blob.position.y = Math.max(-1, Math.min(1, blob.position.y));
         }
 
+        // Check collisions between blobs.
         for (let j = i + 1; j < blobs.current.length; j++) {
           const otherBlob = blobs.current[j];
           const dx = otherBlob.position.x - blob.position.x;
           const dy = otherBlob.position.y - blob.position.y;
           const dist = Math.sqrt(dx * dx + dy * dy);
           const minDist = blob.radius + otherBlob.radius;
-
           if (dist < minDist) {
             const angle = Math.atan2(dy, dx);
             const overlap = minDist - dist;
             const moveX = (overlap / 2) * Math.cos(angle);
             const moveY = (overlap / 2) * Math.sin(angle);
-
             blob.position.x -= moveX;
             blob.position.y -= moveY;
             otherBlob.position.x += moveX;
             otherBlob.position.y += moveY;
-
             const v1 = new THREE.Vector2(blob.velocity.x, blob.velocity.y);
             const v2 = new THREE.Vector2(
               otherBlob.velocity.x,
@@ -118,7 +116,6 @@ const Metaballs = () => {
             const n = new THREE.Vector2(dx, dy).normalize();
             const vRel = v1.clone().sub(v2);
             const vn = vRel.dot(n);
-
             if (vn < 0) {
               const impulse =
                 (-2.0 * vn) / (1 / blob.radius + 1 / otherBlob.radius);
@@ -133,12 +130,12 @@ const Metaballs = () => {
         }
       });
 
+      // Update blob positions and radii uniforms.
       const blobPositions = blobs.current.flatMap((b) => [
         b.position.x,
         b.position.y,
       ]);
       const blobRadii = blobs.current.map((b) => b.radius);
-
       shaderRef.current.uniforms.u_blobs.value = new Float32Array(
         blobPositions
       );
@@ -165,10 +162,9 @@ const Metaballs = () => {
   );
 };
 
-const MetaballCanvas = forwardRef<HTMLCanvasElement>((_, ref) => {
+const MetaballCanvas = () => {
   return (
     <Canvas
-      ref={ref}
       gl={{ preserveDrawingBuffer: true }}
       frameloop="always"
       dpr={[1, 2]}
@@ -184,7 +180,6 @@ const MetaballCanvas = forwardRef<HTMLCanvasElement>((_, ref) => {
       <Metaballs />
     </Canvas>
   );
-});
+};
 
-MetaballCanvas.displayName = "MetaballCanvas"; // Fix React warning for display name
 export default MetaballCanvas;
