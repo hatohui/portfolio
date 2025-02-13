@@ -8,6 +8,12 @@ import { fragmentShader, vertexShader } from "./shaders";
 const NUM_BLOBS = 16;
 
 const Metaballs = () => {
+  useEffect(() => {
+    console.log("Metaballs mounted");
+    return () => {
+      console.log("Metaballs unmounted");
+    };
+  }, []);
   const shaderRef = useRef<THREE.ShaderMaterial>(null);
   const [resolution, setResolution] = useState(
     new THREE.Vector2(window.innerWidth, window.innerHeight)
