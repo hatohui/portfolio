@@ -6,13 +6,14 @@ import React from "react";
 
 const page = () => {
   return (
-    <div className="mt-[57px] w-screen h-full">
+    <div className="mt-[57px] w-screen mb-8">
       <div
-        className="grid pt-5 text-slate-100 gap-4 justify-center 
-        lg:m-[1/12] 
-        lg:grid-rows-3 
-        lg:grid-cols-3 
-        lg:px-40
+        className="grid pt-5 min-h-[calc(100vh-90px)] text-slate-100 gap-4 justify-center
+        xl:m-[1/12]
+        xl:px-40
+        xl:grid-rows-3 
+        xl:grid-cols-3 
+        lg:px-20
         md:mx-7
         md:grid-cols-2
         mx-4

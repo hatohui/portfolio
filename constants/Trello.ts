@@ -1,0 +1,2 @@
+export const TRELLO_QUEUE_LIST_ID = "63d168db2d063104c7ecb833";
+export const TRELLO_WORKING_LIST_ID = "642685e659e21b5a89827af7";

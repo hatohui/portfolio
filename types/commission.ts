@@ -16,4 +16,5 @@ export type CommissionData = {
   idea?: string;
   background: boolean;
   characters: number;
+  estimatedPricing: number;
 };

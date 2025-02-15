@@ -41,7 +41,7 @@ const NavBar = () => {
 
   return (
     <nav
-      className={`fixed top-0 right-0 z-50 w-full h-[57px] p-4 bg-gradient-to-t from-transparent via-[#2a2640]/60 to-[#1b1626]/80 transition-transform duration-300 ${
+      className={`fixed top-0 right-0 z-50 w-full h-[57px] p-4 bg-gradient-to-t overflow-hidden from-transparent via-[#2a2640]/60 to-[#1b1626]/80 transition-transform duration-300 ${
         show ? "translate-y-0" : "-translate-y-full"
       }`}
     >

@@ -1,10 +1,12 @@
+import {
+  TRELLO_QUEUE_LIST_ID,
+  TRELLO_WORKING_LIST_ID,
+} from "@/constants/Trello";
 import type { NextApiRequest, NextApiResponse } from "next";
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   const TRELLO_API_KEY = process.env.TRELLO_API_KEY;
   const TRELLO_API_TOKEN = process.env.TRELLO_API_TOKEN;
-  const TRELLO_QUEUE_LIST_ID = "63d168db2d063104c7ecb833";
-  const TRELLO_WORKING_LIST_ID = "642685e659e21b5a89827af7";
 
   const { query } = req.query;
 
@@ -19,6 +21,8 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     case "working":
       queryUrl = `https://api.trello.com/1/lists/${TRELLO_WORKING_LIST_ID}/cards?key=${TRELLO_API_KEY}&token=${TRELLO_API_TOKEN}`;
       break;
+    case "card":
+      queryUrl = `https://api.trello.com/1/cards?idList=${TRELLO_QUEUE_LIST_ID}&key=${TRELLO_API_KEY}&token=${TRELLO_API_TOKEN}&name=New Commission Request`;
     default:
       res.status(405).json({ error: "method not allowed" });
   }
@@ -39,6 +43,10 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
             name: card.name,
           }))
         );
+
+      case "POST":
+        console.log("POST initiated");
+        res.status(200).json({ message: "You stink" });
 
       //default method
       default:
