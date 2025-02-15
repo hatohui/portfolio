@@ -3,9 +3,10 @@
 import React, { useRef, useEffect } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import * as THREE from "three";
-import { fragmentShader, vertexShader } from "./shaders";
+import { fragmentShader, vertexShader } from "../helper/shaders";
+import { usePathname } from "next/navigation";
 
-const NUM_BLOBS = 16;
+const NUM_BLOBS = 20;
 
 const Metaballs = () => {
   const shaderRef = useRef<THREE.ShaderMaterial | null>(null);
@@ -163,9 +164,13 @@ const Metaballs = () => {
 };
 
 const MetaballCanvas = () => {
+  const path = usePathname();
   return (
     <Canvas
-      gl={{ preserveDrawingBuffer: true }}
+      key={path}
+      gl={{
+        preserveDrawingBuffer: true,
+      }}
       frameloop="always"
       dpr={[1, 2]}
       style={{
