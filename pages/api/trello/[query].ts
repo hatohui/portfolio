@@ -2,6 +2,7 @@ import {
   TRELLO_QUEUE_LIST_ID,
   TRELLO_WORKING_LIST_ID,
 } from "@/constants/Trello";
+import { Card } from "@/types/trello";
 import type { NextApiRequest, NextApiResponse } from "next";
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
@@ -13,6 +14,13 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   if (!TRELLO_API_KEY || !TRELLO_API_TOKEN) {
     return res.status(500).json({ error: "Missing Trello credentials" });
   }
+
+  if (!query || !["queue", "working", "card"].includes(query as string)) {
+    return res
+      .status(400)
+      .json({ error: "Invalid or missing query parameter" });
+  }
+
   let queryUrl = "";
   switch (query) {
     case "queue":
@@ -22,38 +30,54 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       queryUrl = `https://api.trello.com/1/lists/${TRELLO_WORKING_LIST_ID}/cards?key=${TRELLO_API_KEY}&token=${TRELLO_API_TOKEN}`;
       break;
     case "card":
-      queryUrl = `https://api.trello.com/1/cards?idList=${TRELLO_QUEUE_LIST_ID}&key=${TRELLO_API_KEY}&token=${TRELLO_API_TOKEN}&name=New Commission Request`;
-    default:
-      res.status(405).json({ error: "method not allowed" });
+      queryUrl = `https://api.trello.com/1/cards?idList=${TRELLO_QUEUE_LIST_ID}&key=${TRELLO_API_KEY}&token=${TRELLO_API_TOKEN}`;
+      break;
   }
 
-  //handler
   try {
     switch (req.method) {
-      //get method
       case "GET":
         const response = await fetch(queryUrl);
         if (!response.ok)
           throw new Error(`Trello API error: ${response.status}`);
 
         const data = await response.json();
-
         return res.status(200).json(
-          data.map((card: { name: string }) => ({
+          data.map((card: Card) => ({
             name: card.name,
+            id: card.id,
           }))
         );
 
       case "POST":
-        console.log("POST initiated");
-        res.status(200).json({ message: "You stink" });
+        const { name, description } = req.body;
 
-      //default method
+        if (!name || !description) {
+          return res.status(400).json({ error: "Missing required fields" });
+        }
+
+        const start = new Date().toISOString();
+        const updatedDescription = `${description}\n TimeCreated: ${start}`;
+
+        // Construct the POST URL without encoding
+        const postUrl = `${queryUrl}&name=${name}&desc=${updatedDescription}&start=${start}`;
+
+        const postResponse = await fetch(postUrl, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+
+        if (!postResponse.ok)
+          throw new Error(`Trello API error: ${postResponse.status}`);
+
+        const postData = await postResponse.json();
+        return res.status(201).json(postData);
+
       default:
-        res.status(405).json({ error: "method not allowed" });
+        res.status(405).json({ error: "Method not allowed" });
     }
-
-    //error handler
   } catch (error) {
     res.status(500).json({ error: (error as Error).message });
   }

@@ -3,15 +3,12 @@ import { CommissionData } from "./commission";
 
 export type Card = {
   name: string;
+  id: string;
 };
-
-// const trelloBoardUrl = `https://api.trello.com/1/boards/${TRELLO_BOARD_ID}?key=${TRELLO_API_KEY}&token=${TRELLO_API_TOKEN}`;
-// const trelloListUrl = `https://api.trello.com/1/boards/${TRELLO_BOARD_ID}/lists?key=${TRELLO_API_KEY}&token=${TRELLO_API_TOKEN}`;
 
 export type CreateCardPayload = {
   name: string;
   description: string;
-  listId: string;
   file?: File;
 };
 
@@ -19,21 +16,17 @@ export const createTrelloCardPayload = (
   commission: CommissionData
 ): CreateCardPayload => {
   return {
-    name: `${commission.name} - ${commission.type} Commission`,
+    name: `${commission.name}`,
     description: `
-        ✉️ Email: ${commission.email}
-        📞 Contact: ${commission.contact || "N/A"}
-        💡 Idea: ${commission.idea || "N/A"}
-        🖼️ Background: ${commission.background ? "Yes" : "No"}
-        👥 Characters: ${commission.characters}
-        💲 Estimated Pricing: $${commission.estimatedPricing}
+        ✉️ Email: ${commission.email} \n
+        📞 Contact: ${commission.contact || "N/A"} \n
+        💡 Idea: ${commission.idea || "N/A"} \n
+        🖼️ Background: ${commission.background ? "Yes" : "No"} \n
+        👥 Characters: ${commission.characters} \n
+        💲 Estimated Pricing: $${commission.estimatedPricing} \n
         📎 Reference: ${
-          commission.reference
-            ? "Provided (Image attached)"
-            : "No reference provided"
-        }
-    `.trim(),
-    listId: TRELLO_QUEUE_LIST_ID,
-    file: commission.referenceSource,
+          commission.reference ? commission.reference : "No reference provided"
+        } 
+  `.trim(),
   };
 };

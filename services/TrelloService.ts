@@ -28,21 +28,18 @@ export const createTrelloCard = async (
   cardData: CreateCardPayload
 ): Promise<Card | undefined> => {
   try {
-    const formData = new FormData();
-    formData.append("name", cardData.name);
-    formData.append("description", cardData.description);
-    formData.append("listId", cardData.listId);
-    if (cardData.file) formData.append("file", cardData.file);
-
     const response = await fetch("/api/trello/card", {
       method: "POST",
-      body: formData,
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(cardData),
     });
 
     if (!response.ok) throw new Error("Failed to create Trello card");
-
     return await response.json();
   } catch (error) {
     console.error(error);
+    return undefined;
   }
 };

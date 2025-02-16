@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 const NavBar = () => {
   const pathname = usePathname();
@@ -19,7 +19,7 @@ const NavBar = () => {
   ];
 
   // Control navbar visibility on scroll
-  const controlNavbar = () => {
+  const controlNavbar = useCallback(() => {
     const scrollY = window.scrollY;
     if (scrollY > lastScrollY.current && show) {
       setShow(false);
@@ -27,7 +27,7 @@ const NavBar = () => {
       setShow(true);
     }
     lastScrollY.current = scrollY;
-  };
+  }, [show]);
 
   useEffect(() => {
     window.addEventListener("scroll", controlNavbar);

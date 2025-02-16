@@ -18,8 +18,9 @@ const Working: React.FC = () => {
   }, []);
 
   return (
-    <div className="p-4 border-2 w-full h-full backdrop-blur-sm bg-black/5">
-      <div className="font-extrabold truncate">
+    <div className="p-4 border-2 w-full h-full backdrop-blur-sm bg-black/5 shadow-lg flex flex-col">
+      {/* Fixed Title */}
+      <div className="font-extrabold truncate pb-2">
         {isFirstLoad ? (
           "WORKING"
         ) : (
@@ -29,19 +30,18 @@ const Working: React.FC = () => {
           />
         )}
       </div>
-      <div className="pt-4">
+
+      {/* Scrollable List */}
+      <div className="pt-2 overflow-auto thin-scrollbar flex-grow">
         {peopleInWorking.length ? (
           peopleInWorking.map((person, key) => (
             <div key={key}>{person.name}</div>
           ))
         ) : (
           <div className="flex flex-col animate-pulse gap-3">
-            <div className="h-2 rounded bg-gray-200 w-full"></div>
-            <div className="h-2 rounded bg-gray-200 w-full"></div>
-            <div className="h-2 rounded bg-gray-200 w-full"></div>
-            <div className="h-2 rounded bg-gray-200 w-full"></div>
-            <div className="h-2 rounded bg-gray-200 w-full"></div>
-            <div className="h-2 rounded bg-gray-200 w-full"></div>
+            {[...Array(6)].map((_, i) => (
+              <div key={i} className="h-2 rounded bg-gray-200 w-full"></div>
+            ))}
           </div>
         )}
       </div>
