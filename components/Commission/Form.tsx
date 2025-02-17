@@ -9,6 +9,7 @@ import Link from "next/link";
 import TelegramIcon from "../Icons/TelegramIcon";
 import DiscordIcon from "../Icons/DiscordIcon";
 import TwitterIcon from "../Icons/TwitterIcon";
+import FacebookIcon from "../Icons/FacebookIcon";
 
 const Form = ({ mobile }: { mobile: boolean }) => {
   const [formData, setFormData] = useState<CommissionData>({
@@ -69,10 +70,10 @@ const Form = ({ mobile }: { mobile: boolean }) => {
   return (
     <div
       className={`border-2 truncate p-4 w-full backdrop-blur-md md:col-span-2 lg:col-span-2 xl:col-span-1 bg-black/5 lg:row-span-3 ${
-        mobile ? "hidden xl:block" : "block xl:hidden"
+        mobile ? "hidden xl:flex xl:flex-col" : "block xl:hidden"
       }`}
     >
-      <div className="font-extrabold truncate">
+      <div className="font-extrabold truncate pb-2">
         {isFirstLoad ? (
           <div className="flex justify-between ">
             <div>COMMISSION FORM</div>
@@ -95,8 +96,8 @@ const Form = ({ mobile }: { mobile: boolean }) => {
         )}
       </div>
 
-      <form className="pt-4 truncate" onSubmit={handleSubmit}>
-        <div className="md:mx-1 pb-2 flex flex-col">
+      <form className="mt-4 thin-scrollbar  h-full" onSubmit={handleSubmit}>
+        <div className="md:mx-1 mb-3 flex flex-col">
           <label htmlFor="email" className="text-sm/snug">
             Email <span className="text-red-500">*</span>
           </label>
@@ -109,11 +110,11 @@ const Form = ({ mobile }: { mobile: boolean }) => {
             placeholder="example@domain.com"
             onChange={handleChange}
             autoComplete="email"
-            className="bg-[#e8f0fe] p-2 mt-2 text-slate-950 h-9 shadow-inner border border-slate-300 rounded w-full hover:border-blue-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-300 transition-all duration-300"
+            className="bg-[#e8f0fe] p-2 mt-1 text-slate-950 h-9 shadow-inner border border-slate-300 rounded w-full hover:border-blue-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-300 transition-all duration-300"
           />
         </div>
 
-        <div className="md:mx-1 pb-2 flex flex-col">
+        <div className="md:mx-1 mb-3 flex flex-col">
           <label htmlFor="name" className="text-sm/snug">
             Name <span className="text-red-500">*</span>
           </label>
@@ -126,11 +127,11 @@ const Form = ({ mobile }: { mobile: boolean }) => {
             value={formData.name}
             onChange={handleChange}
             autoComplete="name"
-            className="bg-[#e8f0fe] p-2 mt-2 text-slate-950 h-9 shadow-inner border border-slate-300 rounded w-full hover:border-blue-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-300 transition-all duration-300"
+            className="bg-[#e8f0fe] p-2 mt-1 text-slate-950 h-9 shadow-inner border border-slate-300 rounded w-full hover:border-blue-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-300 transition-all duration-300"
           />
         </div>
 
-        <div className="md:mx-1 pb-2 flex flex-col">
+        <div className="md:mx-1 mb-3 flex flex-col">
           <label htmlFor="type" className="text-sm/snug">
             Commission type <span className="text-red-500">*</span>
           </label>
@@ -139,7 +140,7 @@ const Form = ({ mobile }: { mobile: boolean }) => {
             name="type"
             value={formData.type}
             onChange={handleChange}
-            className="bg-[#e8f0fe] p-2 mt-2 text-slate-950 h-9 shadow-inner border border-slate-300 rounded w-full hover:border-blue-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-300 transition-all duration-300"
+            className="bg-[#e8f0fe] p-2 mt-1 text-slate-950 h-9 shadow-inner border border-slate-300 rounded w-full hover:border-blue-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-300 transition-all duration-300"
           >
             <option value={CommissionType.icon}>Icon</option>
             <option value={CommissionType.full}>Full</option>
@@ -148,9 +149,9 @@ const Form = ({ mobile }: { mobile: boolean }) => {
           </select>
         </div>
 
-        <div className="md:mx-1 pb-2 flex flex-col">
+        <div className="md:mx-1 mb-3 flex flex-col">
           <label className="text-sm/snug">Background?</label>
-          <div className="flex items-center gap-4 mt-2">
+          <div className="flex items-center gap-4">
             <label
               htmlFor="background-no"
               className="flex items-center gap-1 cursor-pointer"
@@ -184,7 +185,7 @@ const Form = ({ mobile }: { mobile: boolean }) => {
           </div>
         </div>
 
-        <div className="md:mx-1 pb-2 flex flex-col">
+        <div className="md:mx-1 mb-3 flex flex-col">
           <label htmlFor="characters" className="text-sm/snug">
             Number of Character(s)
           </label>
@@ -197,11 +198,11 @@ const Form = ({ mobile }: { mobile: boolean }) => {
             min={1}
             max={formData.type === CommissionType.full ? 6 : 2}
             autoComplete="off"
-            className="bg-[#e8f0fe] p-2 mt-2 text-slate-950 h-9 shadow-inner border border-slate-300 rounded w-full hover:border-blue-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-300 transition-all duration-300"
+            className="bg-[#e8f0fe] p-2 mt-1 text-slate-950 h-9 shadow-inner border border-slate-300 rounded w-full hover:border-blue-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-300 transition-all duration-300"
           />
         </div>
 
-        <div className="md:mx-1 pb-2 flex flex-col">
+        <div className="md:mx-1 mb-3 flex flex-col">
           <label htmlFor="reference" className="text-sm/snug">
             Reference Link
           </label>
@@ -213,11 +214,11 @@ const Form = ({ mobile }: { mobile: boolean }) => {
             placeholder="https://this.img/arandomstring"
             onChange={handleChange}
             autoComplete="url"
-            className="bg-[#e8f0fe] p-2 mt-2 text-slate-950 h-9 shadow-inner border border-slate-300 rounded w-full hover:border-blue-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-300 transition-all duration-300"
+            className="bg-[#e8f0fe] p-2 mt-1 text-slate-950 h-9 shadow-inner border border-slate-300 rounded w-full hover:border-blue-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-300 transition-all duration-300"
           />
         </div>
 
-        <div className="md:mx-1 pb-2 flex flex-col">
+        <div className="md:mx-1 mb-3 flex flex-col">
           <label htmlFor="idea" className="text-sm/snug">
             Commission Details
           </label>
@@ -228,7 +229,7 @@ const Form = ({ mobile }: { mobile: boolean }) => {
             onChange={handleChange}
             autoComplete="text"
             placeholder="Describe your character, pose, and any special details here!"
-            className="bg-[#e8f0fe] p-2 mt-2 text-slate-950 h-28 shadow-inner border border-slate-300 rounded w-full hover:border-blue-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-300 transition-all duration-300"
+            className="bg-[#e8f0fe] p-2 mt-1 text-slate-950 h-28 shadow-inner border border-slate-300 rounded w-full hover:border-blue-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-300 transition-all duration-300"
           />
         </div>
 
@@ -252,7 +253,7 @@ const Form = ({ mobile }: { mobile: boolean }) => {
           </label>
         </div>
 
-        <div className="flex justify-center mt-4">
+        <div className="flex justify-center mt-3">
           <button
             type="submit"
             className="px-12 py-3 border-2 border-slate-200 text-slate-100 bg-transparent relative group transition-all duration-700 transform group-hover:scale-90"
@@ -263,13 +264,13 @@ const Form = ({ mobile }: { mobile: boolean }) => {
             </span>
           </button>
         </div>
+        <div className="flex justify-center mt-4 gap-4">
+          <DiscordIcon />
+          <TelegramIcon />
+          <TwitterIcon />
+          <FacebookIcon />
+        </div>
       </form>
-
-      <div className="flex justify-center mt-4 gap-4">
-        <DiscordIcon />
-        <TelegramIcon />
-        <TwitterIcon />
-      </div>
     </div>
   );
 };

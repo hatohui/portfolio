@@ -18,7 +18,6 @@ const NavBar = () => {
     { name: "CONTACT", path: "/contact" },
   ];
 
-  // Control navbar visibility on scroll
   const controlNavbar = useCallback(() => {
     const scrollY = window.scrollY;
     if (!hamburger) {
@@ -36,12 +35,9 @@ const NavBar = () => {
     return () => window.removeEventListener("scroll", controlNavbar);
   }, [show, controlNavbar]);
 
-  // Close mobile menu when navigating
   useEffect(() => {
     setHamburger(false);
   }, [pathname]);
-
-  console.log(hamburger);
 
   return (
     <nav

@@ -1,4 +1,3 @@
-import { TRELLO_QUEUE_LIST_ID } from "@/constants/Trello";
 import { CommissionData } from "./commission";
 
 export type Card = {

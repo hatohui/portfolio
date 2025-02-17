@@ -19,7 +19,6 @@ const InQueue: React.FC = () => {
 
   return (
     <div className="border-2 p-4 w-full h-full backdrop-blur-md bg-black/5 shadow-lg flex flex-col">
-      {/* Fixed Title */}
       <div className="font-extrabold truncate pb-2">
         {isFirstLoad ? (
           "IN QUEUE"

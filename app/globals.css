@@ -49,7 +49,7 @@ input:-webkit-autofill:active {
 }
 
 .thin-scrollbar::-webkit-scrollbar {
-  width: 6px;
+  width: 3px;
 }
 
 .thin-scrollbar::-webkit-scrollbar-thumb {
