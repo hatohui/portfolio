@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import TypedText from "../TypedText";
+import TypedText from "../Utils/TypedText";
 import { getTrelloQueue } from "@/services/TrelloService";
 import { Card } from "@/types/trello";
 
@@ -18,7 +18,7 @@ const InQueue: React.FC = () => {
   }, []);
 
   return (
-    <div className="border-2 p-4 w-full h-full backdrop-blur-sm bg-black/5 shadow-lg flex flex-col">
+    <div className="border-2 p-4 w-full h-full backdrop-blur-md bg-black/5 shadow-lg flex flex-col">
       {/* Fixed Title */}
       <div className="font-extrabold truncate pb-2">
         {isFirstLoad ? (
@@ -31,7 +31,6 @@ const InQueue: React.FC = () => {
         )}
       </div>
 
-      {/* Scrollable List */}
       <div className="pt-2 overflow-auto thin-scrollbar flex-grow">
         {peopleInQueue.length ? (
           peopleInQueue.map((person, key) => <div key={key}>{person.name}</div>)

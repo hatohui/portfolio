@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import TypedText from "../TypedText";
+import TypedText from "../Utils/TypedText";
 import { getTrelloWorking } from "@/services/TrelloService";
 import { Card } from "@/types/trello";
 
@@ -18,7 +18,7 @@ const Working: React.FC = () => {
   }, []);
 
   return (
-    <div className="p-4 border-2 w-full h-full backdrop-blur-sm bg-black/5 shadow-lg flex flex-col">
+    <div className="p-4 border-2 w-full h-full backdrop-blur-md bg-black/5 shadow-lg flex flex-col">
       {/* Fixed Title */}
       <div className="font-extrabold truncate pb-2">
         {isFirstLoad ? (

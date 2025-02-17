@@ -20,7 +20,7 @@ const Page = () => {
           grid pt-5 text-slate-100 gap-4 justify-center
           xl:m-[1/12] xl:px-40 xl:grid-rows-3 xl:grid-cols-3
           lg:px-20 md:mx-7 md:grid-cols-2 mx-4 grid-cols-1 grid-rows-1
-          transition-all origin-top duration-700 ease-out xl:h-[calc(100vh-96px)]
+          transition-transform origin-top duration-700 ease-out xl:h-[calc(100vh-96px)]
           ${isOpen ? "opacity-100 scale-y-100" : "opacity-0 scale-y-0"}
         `}
       >

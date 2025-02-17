@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { Raleway } from "next/font/google";
-import NavBar from "@/components/NavBar";
-import MetaballCanvas from "@/components/MetaballCanvas";
+import NavBar from "@/components/Layout/NavBar";
+import MetaballCanvas from "@/components/Layout/MetaballCanvas";
 
 const raleway = Raleway({
   variable: "--font-raleway",
@@ -23,7 +23,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${raleway.variable} flex flex-col antialiased overflow-auto select-none`}
+        className={`${raleway.variable} flex flex-col antialiased overflow-auto text-slate-100`}
       >
         <div
           className={

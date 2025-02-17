@@ -3,7 +3,7 @@
 import React, { useRef, useEffect } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import * as THREE from "three";
-import { fragmentShader, vertexShader } from "../helper/shaders";
+import { fragmentShader, vertexShader } from "../../helper/shaders";
 import { usePathname } from "next/navigation";
 
 const NUM_BLOBS = 20;

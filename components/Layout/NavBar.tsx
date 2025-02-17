@@ -21,13 +21,15 @@ const NavBar = () => {
   // Control navbar visibility on scroll
   const controlNavbar = useCallback(() => {
     const scrollY = window.scrollY;
-    if (scrollY > lastScrollY.current && show) {
-      setShow(false);
-    } else if (scrollY < lastScrollY.current && !show) {
-      setShow(true);
+    if (!hamburger) {
+      if (scrollY > lastScrollY.current && show) {
+        setShow(false);
+      } else if (scrollY < lastScrollY.current && !show) {
+        setShow(true);
+      }
     }
     lastScrollY.current = scrollY;
-  }, [show]);
+  }, [show, hamburger]);
 
   useEffect(() => {
     window.addEventListener("scroll", controlNavbar);
@@ -39,11 +41,13 @@ const NavBar = () => {
     setHamburger(false);
   }, [pathname]);
 
+  console.log(hamburger);
+
   return (
     <nav
-      className={`fixed top-0 right-0 z-50 w-full h-[57px] p-4 bg-gradient-to-t overflow-hidden from-transparent via-[#2a2640]/60 to-[#1b1626]/80 transition-transform duration-300 ${
+      className={`fixed top-0 select-none right-0 z-[100] min-h-[57px] w-full overflow-hidden p-4 bg-gradient-to-t from-transparent via-[#2a2640]/60 to-[#1b1626]/80 transition-transform duration-500 ${
         show ? "translate-y-0" : "-translate-y-full"
-      }`}
+      } ${hamburger ? "h-full" : ""}`}
     >
       {/* Desktop Nav */}
       <div className="mx-auto justify-center items-center gap-2 hidden md:flex">
@@ -121,11 +125,13 @@ const NavBar = () => {
 
       {/* Mobile Dropdown */}
       <div
-        className={`absolute inset-x-0 overflow-hidden md:hidden top-[57px] transition-all ease-in-out backdrop-blur-sm bg-black/10 duration-300 ${
-          hamburger ? "max-h-screen border-b-2" : "max-h-0"
+        className={`absolute inset-x-0 top-[57px] md:hidden h-[calc(100vh-57px)] transition-all duration-300 backdrop-blur-sm bg-gradient-to-b from-transparent to-black/10 ${
+          hamburger
+            ? "opacity-100 translate-y-0"
+            : "opacity-0 -translate-y-5 pointer-events-none max-h-0"
         }`}
       >
-        <div className="flex flex-col items-center text-center justify-center transition-colors">
+        <div className="flex flex-col items-center text-center justify-center transition-colors pt-8">
           {paths.map(({ name, path }) => {
             const isActive = pathname === path;
             return (
@@ -141,7 +147,7 @@ const NavBar = () => {
               </Link>
             );
           })}
-          <div className="p-3 flex justify-evenly gap-5 text-sm text-slate-400">
+          <div className="absolute p-3 bottom-0 flex justify-evenly gap-5 text-sm">
             <span>© hatohui</span>
             <span>Hi</span>
           </div>

@@ -1,4 +1,4 @@
-import Wip from "@/components/Wip";
+import Wip from "@/components/Utils/Wip";
 import React from "react";
 
 const page = () => {

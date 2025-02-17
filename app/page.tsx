@@ -1,6 +1,6 @@
 "use client";
 
-import TypedText from "@/components/TypedText";
+import TypedText from "@/components/Utils/TypedText";
 
 export default function pages() {
   return (
@@ -11,9 +11,7 @@ export default function pages() {
           onComplete={() => console.log("Hello world")}
         />
       </div>
-      <span className="text-xl text-slate-100">
-        This website is still a work in progress
-      </span>
+      <span className="text-xl">This website is still a work in progress</span>
     </div>
   );
 }
