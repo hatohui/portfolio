@@ -4,6 +4,7 @@ export enum CommissionType {
   sketchpage = "SKETCH_PAGE",
   reference = "REF_SHEET",
   other = "OTHER",
+  none = "",
 }
 
 export type CommissionData = {
@@ -17,4 +18,5 @@ export type CommissionData = {
   background: boolean;
   characters: number;
   estimatedPricing: number;
+  platform: string;
 };

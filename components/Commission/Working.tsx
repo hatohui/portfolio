@@ -7,7 +7,6 @@ import { Card } from "@/types/trello";
 
 const Working: React.FC = () => {
   const [peopleInWorking, setPeopleInWorking] = useState<Card[]>([]);
-  const [isFirstLoad, setIsFirstLoad] = useState<boolean>(false);
 
   useEffect(() => {
     getTrelloWorking().then((cards: Card[] | undefined) => {
@@ -21,14 +20,7 @@ const Working: React.FC = () => {
     <div className="p-4 border-2 w-full h-full backdrop-blur-md bg-black/5 shadow-lg flex flex-col">
       {/* Fixed Title */}
       <div className="font-extrabold truncate pb-2">
-        {isFirstLoad ? (
-          "WORKING"
-        ) : (
-          <TypedText
-            strings={["WORKING"]}
-            onComplete={() => setIsFirstLoad(true)}
-          />
-        )}
+        <TypedText strings={["WORKING"]} />
       </div>
 
       {/* Scrollable List */}

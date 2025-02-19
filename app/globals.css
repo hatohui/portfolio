@@ -60,3 +60,12 @@ input:-webkit-autofill:active {
 .thin-scrollbar::-webkit-scrollbar-track {
   background: transparent;
 }
+
+::-moz-selection {
+  /* Code for Firefox */
+  background: yellow;
+}
+
+::selection {
+  background: rgb(57, 97, 78);
+}

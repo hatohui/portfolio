@@ -24,6 +24,7 @@ export const getTrelloWorking = async (): Promise<Card[] | undefined> => {
   }
 };
 
+//**Create new card */
 export const createTrelloCard = async (
   cardData: CreateCardPayload
 ): Promise<Card | undefined> => {

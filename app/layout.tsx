@@ -3,6 +3,7 @@ import "./globals.css";
 import { Raleway } from "next/font/google";
 import NavBar from "@/components/Layout/NavBar";
 import MetaballCanvas from "@/components/Layout/MetaballCanvas";
+import { ImageViewerProvider } from "@/Context/ImageViewContext";
 
 const raleway = Raleway({
   variable: "--font-raleway",
@@ -32,7 +33,9 @@ export default function RootLayout({
         ></div>
         <MetaballCanvas />
         <NavBar />
-        <main>{children}</main>
+        <ImageViewerProvider>
+          <main>{children}</main>
+        </ImageViewerProvider>
       </body>
     </html>
   );

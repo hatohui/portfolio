@@ -1,10 +1,10 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import Form from "@/components/Commission/Form";
 import InQueue from "@/components/Commission/InQueue";
 import Status from "@/components/Commission/Status";
 import Working from "@/components/Commission/Working";
+import Link from "next/link";
 
 const Page = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -26,9 +26,10 @@ const Page = () => {
       >
         <InQueue />
         <Working />
-        <Form mobile />
         <Status />
-        <Form mobile={false} />
+        <Link href="commission/create" className="bg-red-300 py-3 px-3">
+          To Form
+        </Link>
       </div>
     </div>
   );

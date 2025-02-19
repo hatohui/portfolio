@@ -18,7 +18,9 @@ export const createTrelloCardPayload = (
     name: `${commission.name}`,
     description: `
         ✉️ Email: ${commission.email} \n
-        📞 Contact: ${commission.contact || "N/A"} \n
+        📞 Contact: ${
+          commission.contact + " on " + commission.platform || "N/A"
+        } \n
         💡 Idea: ${commission.idea || "N/A"} \n
         🖼️ Background: ${commission.background ? "Yes" : "No"} \n
         👥 Characters: ${commission.characters} \n
@@ -29,3 +31,30 @@ export const createTrelloCardPayload = (
   `.trim(),
   };
 };
+
+export enum ImageQueryType {
+  icon = "icon",
+  full = "full",
+  sketchpage = "sketchpage",
+  background = "background",
+  none = "",
+}
+
+export type ImageURL = {
+  url: string;
+  preview: string;
+  height: number;
+  width: number;
+};
+
+export type ImageURLPayload = ImageURL[];
+
+export interface TrelloCard {
+  id: string;
+  name: string;
+  desc: string;
+  attachments?: {
+    url: string;
+    previews: { height: number; id: string; url: string; width: number }[];
+  }[];
+}

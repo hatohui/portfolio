@@ -15,12 +15,6 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     return res.status(500).json({ error: "Missing Trello credentials" });
   }
 
-  if (!query || !["queue", "working", "card"].includes(query as string)) {
-    return res
-      .status(400)
-      .json({ error: "Invalid or missing query parameter" });
-  }
-
   let queryUrl = "";
   switch (query) {
     case "queue":
@@ -32,6 +26,10 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     case "card":
       queryUrl = `https://api.trello.com/1/cards?idList=${TRELLO_QUEUE_LIST_ID}&key=${TRELLO_API_KEY}&token=${TRELLO_API_TOKEN}`;
       break;
+    default:
+      return res
+        .status(400)
+        .json({ error: "Invalid or missing query parameter" });
   }
 
   try {

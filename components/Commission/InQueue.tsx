@@ -7,7 +7,6 @@ import { Card } from "@/types/trello";
 
 const InQueue: React.FC = () => {
   const [peopleInQueue, setPeopleInQueue] = useState<Card[]>([]);
-  const [isFirstLoad, setIsFirstLoad] = useState<boolean>(false);
 
   useEffect(() => {
     getTrelloQueue().then((cards: Card[] | undefined) => {
@@ -20,14 +19,7 @@ const InQueue: React.FC = () => {
   return (
     <div className="border-2 p-4 w-full h-full backdrop-blur-md bg-black/5 shadow-lg flex flex-col">
       <div className="font-extrabold truncate pb-2">
-        {isFirstLoad ? (
-          "IN QUEUE"
-        ) : (
-          <TypedText
-            strings={["IN QUEUE"]}
-            onComplete={() => setIsFirstLoad(true)}
-          />
-        )}
+        <TypedText strings={["IN QUEUE"]} />
       </div>
 
       <div className="pt-2 overflow-auto thin-scrollbar flex-grow">

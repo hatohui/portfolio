@@ -6,7 +6,7 @@ const TOS = () => {
   return (
     <div className="w-full max-w-3xl backdrop-blur-md border thin-scrollbar border-gray-300 p-6 rounded-md shadow-lg overflow-auto h-[80vh] relative">
       <Link
-        href="/commission"
+        href="/commission/create"
         className="absolute top-3 left-3 w-8 h-8 flex items-center justify-center rounded-full hover:text-slate-900 hover:bg-gray-300 transition"
         aria-label="Return"
       >

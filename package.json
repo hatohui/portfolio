@@ -12,6 +12,8 @@
     "@react-three/drei": "^9.121.4",
     "@react-three/fiber": "9.0.0-alpha.8",
     "@types/three": "^0.173.0",
+    "flowbite": "^3.1.2",
+    "flowbite-react": "^0.10.2",
     "next": "15.1.6",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
