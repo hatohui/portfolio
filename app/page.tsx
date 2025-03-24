@@ -38,7 +38,7 @@ export default function Pages() {
       ></div>
       <div className="flex overflow-hidden flex-col z-50 justify-center text-center items-center h-screen select-none w-full">
         <div
-          className="w-full h-1/2 hover:z-50 hover:h-2/3 transition-transform flex flex-nowrap border-2 flex-col focus:scale-95 hover:border-t-2 border-b-2 duration-300 ease-out hover:translate-y-10 hover:scale-105 relative bg-slate-950 hover:bg-[#aaeffe] skew-y-6 overflow-hidden group"
+          className="w-full h-1/2 cursor-pointer hover:z-50 hover:h-2/3 transition-transform flex flex-nowrap border-2 flex-col focus:scale-95 hover:border-t-2 border-b-2 duration-300 ease-out hover:translate-y-10 hover:scale-105 relative bg-slate-950 hover:bg-[#aaeffe] skew-y-6 overflow-hidden group"
           onMouseEnter={() => setHovered("BRYAN")}
           onMouseLeave={() => setHovered(undefined)}
           onClick={() => router.push(userPath.zagvandr)}
@@ -58,7 +58,7 @@ export default function Pages() {
         </div>
 
         <div
-          className="w-full h-1/2 hover:h-2/3 transition-transform flex flex-nowrap flex-col duration-300 border-t-2 border-2 hover:border-b-2 ease-out hover:z-50 hover:-translate-y-10 hover:scale-105 relative bg-slate-950 hover:bg-[#aaeffe] skew-y-6 overflow-hidden group"
+          className="w-full h-1/2 hover:h-2/3 cursor-pointer transition-transform flex flex-nowrap flex-col duration-300 border-t-2 border-2 hover:border-b-2 ease-out hover:z-50 hover:-translate-y-10 hover:scale-105 relative bg-slate-950 hover:bg-[#aaeffe] skew-y-6 overflow-hidden group"
           onMouseEnter={() => setHovered("HATOHUI")}
           onMouseLeave={() => setHovered(undefined)}
           onClick={() => router.push(userPath.hatohui)}
