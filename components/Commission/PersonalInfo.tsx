@@ -60,7 +60,7 @@ const PersonalInfo = ({
       </div>
       <div className="md:mx-1 mb-3 flex flex-col">
         <label htmlFor="name" className="text-sm/snug">
-          Contact's Platform <span className="text-red-500">*</span>
+          Contacts Platform <span className="text-red-500">*</span>
         </label>
         <input
           id="platform"

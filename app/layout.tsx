@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { Raleway } from "next/font/google";
-import NavBar from "@/components/Layout/NavBar";
-import MetaballCanvas from "@/components/Layout/MetaballCanvas";
+// import NavBar from "@/components/Layout/NavBar";
+// import MetaballCanvas from "@/components/Layout/MetaballCanvas";
 import { ImageViewerProvider } from "@/Context/ImageViewContext";
 
 const raleway = Raleway({

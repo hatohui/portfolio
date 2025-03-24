@@ -20,7 +20,7 @@ import { CommissionData, CommissionType } from "@/types/commission";
 import { createTrelloCardPayload } from "@/types/trello";
 import React, { ChangeEvent, useState } from "react";
 
-const page = () => {
+const Page = () => {
   const [formData, setFormData] = useState<CommissionData>({
     email: "",
     name: "",
@@ -120,4 +120,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;
