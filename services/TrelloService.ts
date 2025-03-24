@@ -1,6 +1,5 @@
 import { Card, CreateCardPayload } from "@/types/trello";
 
-//*return current queue*//
 export const getTrelloQueue = async (): Promise<Card[] | undefined> => {
   try {
     const response = await fetch("/api/trello/queue");
@@ -12,19 +11,16 @@ export const getTrelloQueue = async (): Promise<Card[] | undefined> => {
   }
 };
 
-//*return current queue*//
 export const getTrelloWorking = async (): Promise<Card[] | undefined> => {
   try {
     const response = await fetch("/api/trello/working");
     if (!response.ok) throw new Error("Failed to fetch queue data");
-    const data = await response.json();
-    return data;
+    return await response.json();
   } catch (error) {
     console.error(error);
   }
 };
 
-//**Create new card */
 export const createTrelloCard = async (
   cardData: CreateCardPayload
 ): Promise<Card | undefined> => {

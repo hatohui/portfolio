@@ -69,3 +69,21 @@ input:-webkit-autofill:active {
 ::selection {
   background: rgb(57, 97, 78);
 }
+
+@keyframes scroll-left {
+  from {
+    transform: translateX(90%);
+  }
+  to {
+    transform: translateX(-80%);
+  }
+}
+
+@keyframes scroll-l {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(-60%);
+  }
+}

@@ -26,13 +26,13 @@ export default function RootLayout({
       <body
         className={`${raleway.variable} flex flex-col antialiased overflow-auto text-slate-100`}
       >
-        <div
+        {/* <div
           className={
             "fixed -z-40 bg-gradient-to-t from-[rgb(166,78,70)] to-[rgb(42,38,64)] w-screen h-screen"
           }
-        ></div>
-        <MetaballCanvas />
-        <NavBar />
+        ></div> */}
+        {/* <MetaballCanvas /> */}
+        {/* <NavBar /> */}
         <ImageViewerProvider>
           <main>{children}</main>
         </ImageViewerProvider>

@@ -55,9 +55,9 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
         }
 
         const start = new Date().toISOString();
+
         const updatedDescription = `${description}\n TimeCreated: ${start}`;
 
-        // Construct the POST URL without encoding
         const postUrl = `${queryUrl}&name=${name}&desc=${updatedDescription}&start=${start}`;
 
         const postResponse = await fetch(postUrl, {
