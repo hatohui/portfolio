@@ -20,7 +20,6 @@ const CharacterCard = ({
   to,
   imgSrc,
   alt,
-  label,
   hoverValue,
   imageStyle,
   className,
