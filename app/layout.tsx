@@ -4,8 +4,6 @@ import { Raleway } from "next/font/google";
 // import NavBar from "@/components/Layout/NavBar";
 // import MetaballCanvas from "@/components/Layout/MetaballCanvas";
 import { ImageViewerProvider } from "@/Context/ImageViewContext";
-import { Suspense } from "react";
-import Loading from "@/components/Utils/Loading";
 
 const raleway = Raleway({
   variable: "--font-raleway",
@@ -28,13 +26,6 @@ export default function RootLayout({
       <body
         className={`${raleway.variable} flex flex-col antialiased overflow-auto text-slate-100`}
       >
-        {/* <div
-          className={
-            "fixed -z-40 bg-gradient-to-t from-[rgb(166,78,70)] to-[rgb(42,38,64)] w-screen h-screen"
-          }
-        ></div> */}
-        {/* <MetaballCanvas /> */}
-        {/* <NavBar /> */}
         <ImageViewerProvider>
           <main>{children}</main>
         </ImageViewerProvider>
