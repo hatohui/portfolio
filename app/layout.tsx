@@ -4,6 +4,8 @@ import { Raleway } from "next/font/google";
 // import NavBar from "@/components/Layout/NavBar";
 // import MetaballCanvas from "@/components/Layout/MetaballCanvas";
 import { ImageViewerProvider } from "@/Context/ImageViewContext";
+import { Suspense } from "react";
+import Loading from "@/components/Utils/Loading";
 
 const raleway = Raleway({
   variable: "--font-raleway",

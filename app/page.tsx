@@ -1,10 +1,12 @@
 "use client";
 
 import CharacterCard, { HoverCards } from "@/components/Landing/CharacterCard";
+import Loading from "@/components/Utils/Loading";
 import TypedText from "@/components/Utils/TypedText";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function Pages() {
+  const [loading, setLoading] = useState(true);
   const [hovered, setHovered] = useState<HoverCards>();
 
   const imagesSrc = {
@@ -12,7 +14,24 @@ export default function Pages() {
     zagvandr: "/Images/BryanBanner.jpg",
   };
 
-  return (
+  useEffect(() => {
+    const handleLoad = () => {
+      setTimeout(() => {
+        setLoading(false);
+      }, 1200);
+    };
+
+    if (document.readyState === "complete") {
+      handleLoad();
+    } else {
+      window.addEventListener("load", handleLoad);
+      return () => window.removeEventListener("load", handleLoad);
+    }
+  }, []);
+
+  return loading ? (
+    <Loading />
+  ) : (
     <div className="overflow-hidden">
       {hovered == "ZAG" && (
         <>

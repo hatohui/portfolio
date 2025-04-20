@@ -43,8 +43,8 @@ const CharacterCard = ({
       <div className="absolute flex justify-end inset-0 z-[60] opacity-35">
         <div className="w-full h-full bg-gradient-to-t from-black via-transparent to-black skew-y-[-6] origin-top" />
       </div>
-      <div className="absolute -top-[1.2rem] left-0 w-full h-5 max-h-5 bg-[url('/Images/caution-tape.jpg')] animate-pulse bg-repeat-x z-20 opacity-90 brightness-[.2] group-focus:brightness-[2] group-hover:brightness-[2] transition-[filter] duration-200 ease-in-out" />
-      <div className="absolute -bottom-[1.2rem] left-0 w-full h-5 max-h-5 bg-[url('/Images/caution-tape.jpg')] animate-pulse bg-repeat-x z-20 opacity-90 brightness-[.2] group-focus:brightness-[.9] group-hover:brightness-[.9] transition-[filter] duration-200 ease-in-out" />
+      <div className="absolute -top-[1.2rem] left-0 w-full h-5 max-h-5 bg-[url('/Images/caution-tape.jpg')] group-hover:animate-pulse group-focus:animate-pulse bg-repeat-x z-20 opacity-90 brightness-[.2] group-focus:brightness-[2] group-hover:brightness-[2] transition-[filter] duration-200 ease-in-out" />
+      <div className="absolute -bottom-[1.2rem] left-0 w-full h-5 max-h-5 bg-[url('/Images/caution-tape.jpg')] group-hover:animate-pulse group-focus:animate-pulse bg-repeat-x z-20 opacity-90 brightness-[.2] group-focus:brightness-[.9] group-hover:brightness-[.9] transition-[filter] duration-200 ease-in-out" />
       <div className="absolute group-hover:opacity-0 group-focus:opacity-0 opacity-60 transition-opacity bg-black w-full h-full duration-300 ease-out"></div>
       <img
         className={`${
