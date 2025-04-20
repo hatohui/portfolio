@@ -72,18 +72,18 @@ input:-webkit-autofill:active {
 
 @keyframes scroll-left {
   from {
-    transform: translateX(90%);
-  }
-  to {
-    transform: translateX(-80%);
-  }
-}
-
-@keyframes scroll-l {
-  from {
     transform: translateX(100%);
   }
   to {
-    transform: translateX(-60%);
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes scroll-right {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(100%);
   }
 }
