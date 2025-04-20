@@ -31,7 +31,7 @@ const CharacterCard = ({
     <button
       className={`${
         className ?? ""
-      } h-1/3 cursor-pointer transition-transform flex flex-col focus:z-50 hover:z-50 focus:scale-110 hover:scale-110 relative skew-y-6 overflow-visible origin-center group cursor-[url('/Images/paw.png'),pointer]`}
+      } h-1/3 cursor-pointer transition-transform flex flex-col focus:z-50 hover:z-50 focus:scale-110 hover:scale-110 relative skew-y-6 overflow-visible origin-center group cursor-[url('/Images/paw.png'),_pointer]`}
       onMouseEnter={() => setHovered(hoverValue)}
       onMouseLeave={() => setHovered(undefined)}
       onClick={() => router.push(to)}
