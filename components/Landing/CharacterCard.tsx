@@ -50,7 +50,7 @@ const CharacterCard = ({
         className={`${
           imageStyle ??
           "group-hover:object-[center_35%] group-focus:object-[center_35%] object-[center_30%]"
-        } w-full h-full object-cover transition-[object-position,transform] lg:group-hover:translate-x-20 lg:group-focus:translate-x-20 ease-linear group-hover:duration-[7000ms] group-focus:duration-[7000ms]`}
+        } w-full h-full object-cover transition-[object-position,transform] ease-linear group-hover:duration-[7000ms] group-focus:duration-[7000ms]`}
         src={imgSrc}
         alt={alt}
       />

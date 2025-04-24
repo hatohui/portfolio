@@ -16,9 +16,7 @@ export default function Pages() {
 
   useEffect(() => {
     const handleLoad = () => {
-      setTimeout(() => {
-        setLoading(false);
-      }, 1200);
+      setLoading(false);
     };
 
     if (document.readyState === "complete") {
@@ -47,6 +45,7 @@ export default function Pages() {
           <div className="w-screen h-2 absolute bottom-0 select-none z-[9999] mb-12 bg-gradient-to-r from-green-400 via-teal-500 to-blue-400 [mask-image:url('/Images/shattered-dark.png')] rounded-xl animate-[scroll-right_5s_ease-in-out_infinite]" />
         </>
       )}
+
       {hovered == "HAT" && (
         <>
           <div className="w-screen h-2 absolute select-none z-[9999] mt-2 bg-gradient-to-r from-blue-500 via-cyan-400 to-green-500 [mask-image:url('/Images/shattered-dark.png')] rounded-xl animate-[scroll-right_3s_ease-in-out_infinite]" />
@@ -69,7 +68,7 @@ export default function Pages() {
           } select-none drop-shadow-lg`}
         >
           <TypedText
-            className="font-mono lg:text-9xl text-7xl text-[#b48d04] animate-pulse overflow-hidden font-extrabold"
+            className="font-mono lg:text-9xl text-[#b48d04] text-7xl animate-pulse font-extrabol"
             strings={["ZAGVANDR"]}
             typeSpeed={60}
           />
@@ -103,27 +102,29 @@ export default function Pages() {
       ></div>
 
       {/* Images */}
-      <div className="flex h-screen w-screen absolute pointer-events-none overflow-hidden ">
+      <div className="h-screen w-screen absolute pointer-events-none overflow-hidden hidden lg:flex">
         <img
           src="/Images/zagvandr.png"
-          className={`transition-all duration-300 brightness-0 scale-75 hidden md:block ${
+          className={`transition-all duration-300 brightness-0 scale-75 ${
             hovered === "ZAG"
               ? "brightness-100 translate-x-20 translate-y-0 scale-[1.03] z-[100]"
-              : "md:translate-y-20 md:-translate-10 z-[99]"
+              : "translate-y-20 -translate-10 z-[99]"
           } ${hovered === "HAT" ? "opacity-5" : ""}`}
         ></img>
       </div>
 
-      <div className="flex h-screen w-screen absolute pointer-events-none overflow-hidden">
+      <div className="h-screen w-screen absolute pointer-events-none overflow-hidden hidden lg:flex">
         <img
           src="/Images/Hatohui.webp"
-          className={`transition-all duration-300 brightness-0 object-cover scale-75 hidden md:block ${
+          className={`transition-all duration-300 brightness-0 object-cover scale-75 ${
             hovered === "HAT"
               ? "brightness-100 translate-x-20 translate-y-0 scale-[1.05] z-[100]"
-              : "md:translate-y-20 md:translate-x-20 z-[99]"
+              : "translate-y-32 translate-x-32 z-[99]"
           } ${hovered === "ZAG" ? "opacity-5" : ""}`}
         ></img>
       </div>
+
+      <div className="flex h-screen w-screen absolute pointer-events-none overflow-hidden"></div>
 
       <div
         className={`${
@@ -138,7 +139,11 @@ export default function Pages() {
       ></div>
 
       {/* Cards */}
-      <div className="flex flex-col h-dvh justify-center overflow-hidden gap-5 select-none">
+      <div
+        className={`${
+          hovered ? "" : "animate-[pulse_2s_cubic-bezier(0.4,0,0.6,1)_infinite]"
+        } flex flex-col h-dvh justify-center overflow-hidden gap-5 select-none`}
+      >
         <CharacterCard
           setHovered={setHovered}
           className="hover:translate-y-14 hover:duration-700 focus:translate-y-14 focus:duration-700 duration-200"
@@ -161,7 +166,7 @@ export default function Pages() {
         />
       </div>
 
-      <div className="fixed top-0 left-0 w-screen h-screen bg-[url('/Images/axiom-pattern.png')] -z-50" />
+      <div className="fixed animate-pulse top-0 left-0 w-screen h-screen bg-[url('/Images/axiom-pattern.png')] -z-50" />
     </div>
   );
 }

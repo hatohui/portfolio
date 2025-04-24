@@ -1,9 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { Raleway } from "next/font/google";
-// import NavBar from "@/components/Layout/NavBar";
-// import MetaballCanvas from "@/components/Layout/MetaballCanvas";
-import { ImageViewerProvider } from "@/Context/ImageViewContext";
 
 const raleway = Raleway({
   variable: "--font-raleway",
@@ -26,9 +23,7 @@ export default function RootLayout({
       <body
         className={`${raleway.variable} flex flex-col antialiased overflow-auto text-slate-100`}
       >
-        <ImageViewerProvider>
-          <main>{children}</main>
-        </ImageViewerProvider>
+        {children}
       </body>
     </html>
   );

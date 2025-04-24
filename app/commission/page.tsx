@@ -14,7 +14,7 @@ const Page = () => {
   }, []);
 
   return (
-    <div className="mt-[57px] w-screen  mb-8">
+    <div className="mt-[57px] w-screen mb-8">
       <div
         className={`
           grid pt-5 text-slate-100 gap-4 justify-center
